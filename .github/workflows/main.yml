@@ -26,10 +26,10 @@ jobs:
         run:  qmk setup -y
         
       - name: mkdir
-        run:  mkdir /home/runner/qmk_firmware/keyboards/kprepulic/bm40hsrgb/keymaps/tk555
+        run:  mkdir /home/runner/qmk_firmware/keyboards/kprepublic/bm40hsrgb/keymaps/tk555
 
       - name: cp files
-        run:  cp * /home/runner/qmk_firmware/keyboards/kprepulic/bm40hsrgb/keymaps/tk555
+        run:  cp * /home/runner/qmk_firmware/keyboards/kprepublic/bm40hsrgb/keymaps/tk555
         
       - name: compile
         run: qmk compile -kb kprepublic/bm40hsrgb -km tk555
