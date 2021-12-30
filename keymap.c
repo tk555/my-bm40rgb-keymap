@@ -19,7 +19,8 @@ enum layers {
   _QWERTY,
   _LOWER,
   _RAISE,
-  _ADJUST
+  _ADJUST,
+  _NUMPAD
 };
 
 #define LOWER MO(_LOWER)
@@ -32,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q,  KC_W,    KC_E,    KC_R,    KC_T,    KC_TAB,     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,
     KC_A,  KC_S,    KC_D,    KC_F,    KC_G,    KC_LALT,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     KC_Z,  KC_X,    KC_C,    KC_V,    KC_B,    KC_LGUI,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_BSLS,
-    KC_ESC, XXXXXXX, KC_LSFT, LOWER, KC_SPC,   KC_ENT,  RAISE,  KC_LCTL ,   KC_INS,  KC_PSCR,   KC_PAUS
+    KC_ESC, TG(_NUMPAD), KC_LSFT, LOWER, KC_SPC,   KC_ENT,  RAISE,  KC_LCTL ,   KC_INS,  KC_PSCR,   KC_PAUS
 ),
 
 [_LOWER] = LAYOUT_planck_mit(
@@ -51,10 +52,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 [_ADJUST] = LAYOUT_planck_mit(
-      RESET,   DEBUG, RGB_TOG, RGB_MOD, RGB_HUI, _______, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______, _______, _______,
+      RESET,   DEBUG, RGB_TOG, RGB_MOD, RGB_HUI, _______, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,
     _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
+),
+
+
+[_NUMPAD] = LAYOUT_planck_mit(
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, KC_KP_7, KC_KP_8, KC_KP_9, KC_PAST, XXXXXXX,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_BSPC, KC_KP_4, KC_KP_5, KC_KP_6, KC_PMNS, KC_PPLS,
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_KP_0, KC_KP_1, KC_KP_2, KC_KP_3, KC_PSLS, KC_PDOT,
+    _______, _______, _______, _______, _______, _______, _______, _______,  KC_COMM, _______, _______
 )
 
 };
