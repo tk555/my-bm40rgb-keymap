@@ -72,3 +72,17 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
+ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+    HSV hsv = {120,100, 0};
+    HSV mz={HSV_MAGENTA};
+    if(layer_state_is(_NUMPAD)){
+      hsv = mz;
+    }
+
+    if (hsv.v > rgb_matrix_get_val()) {
+        hsv.v = rgb_matrix_get_val();
+    }
+    RGB rgb = hsv_to_rgb(hsv);
+    rgb_matrix_set_color(37,rgb.r,rgb.g,rgb.b);
+}
+
