@@ -1,0 +1,40 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: ls 
+        run: ls -a
+
+      - name: python3 version
+        run:  python3 --version
+
+      - name: install pip qmk
+        run:  python3 -m pip install --user qmk
+
+      - name: qmk setup
+        run:  qmk setup -y
+        
+      - name: mkdir
+        run:  mkdir /home/runner/qmk_firmware/keyboards/kprepublic/bm40hsrgb/keymaps/tk555
+
+      - name: cp files
+        run:  cp * /home/runner/qmk_firmware/keyboards/kprepublic/bm40hsrgb/keymaps/tk555
+        
+      - name: compile
+        run: qmk compile -kb kprepublic/bm40hsrgb -km tk555
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          path: /home/runner/qmk_firmware/kprepublic_bm40hsrgb_tk555.hex
